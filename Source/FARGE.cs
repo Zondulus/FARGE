@@ -79,8 +79,7 @@ public class GroundEffectFAR : MonoBehaviour
         // All of these conditions must be true for the ground effect to be a candidate for activation.
         // This check correctly represents the "mod is active" state you wanted for logging.
         bool conditionsMet = activeVessel.mainBody.atmosphere &&
-                             !activeVessel.LandedOrSplashed &&
-                             activeVessel.srfSpeed >= 5.0 &&
+                             activeVessel.srfSpeed >= 2.0 &&
                              agl >= 0 && agl <= startAltitude;
 
         bool shouldBeActive = false;
