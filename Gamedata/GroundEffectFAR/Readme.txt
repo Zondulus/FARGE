@@ -5,7 +5,7 @@ AI Authorship Disclaimer: The majority of the code in this mod was written by an
 
 SUMMARY:
 
-This mod implements a basic form of ground effect in KSP 1 games which use Ferram Aerospace Research! This will make takeoffs easier and landings harder. Ground Effect Vehicles are much more viable now as well. The effect is not 
+This mod implements a basic form of ground effect in KSP 1 games which use Ferram Aerospace Research! This will make takeoffs easier and landings harder. Ground Effect Vehicles are much more viable now as well.
 
 Starting from a configurable altitude (20m by default), you will experience up to a 50% reduction in drag as you descend to a configurable minimum altitude. This is intended as a lightweight plugin for games using FAR and can be adjusted using values in the config file. The much better GroundEffect mod (for non-FAR games) does a better job of this by following this real-world logic!
 
