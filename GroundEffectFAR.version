@@ -1,0 +1,28 @@
+{
+    "NAME":"GroundEffectFAR",
+    "URL":"https://github.com/Zondulus/FARGE",
+    "DOWNLOAD":"https://github.com/Zondulus/FARGE/releases",
+    "VERSION":
+    {
+        "MAJOR":4,
+        "MINOR":1,
+        "PATCH":0,
+        "BUILD":0
+    },
+    "KSP_VERSION":
+    {
+        "MAJOR":1,
+        "MINOR":12,
+        "PATCH":5
+    },
+    "KSP_VERSION_MIN":{
+        "MAJOR":1,
+        "MINOR":12,
+        "PATCH":0
+    },
+    "KSP_VERSION_MAX":{
+        "MAJOR":1,
+        "MINOR":12,
+        "PATCH":99
+    }
+}
