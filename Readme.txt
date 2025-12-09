@@ -1,28 +1,23 @@
-FARGE v3.1.3 Alpha Readme
+FARGE v4.1.0 Alpha Readme
 License: CC0 1.0 Universal (see License.txt)
 
 AI Authorship Disclaimer: The majority of the code in this mod was written by an AI. No code was plagiarized from other mods. This Readme is human-written. 
 
 SUMMARY:
 
-This mod implements a basic form of ground effect in KSP 1 games which use Ferram Aerospace Research! This will make takeoffs easier and landings harder. Ground Effect Vehicles are much more viable now as well.
+This mod implements a basic form of ground effect in KSP 1.12.5 games which use Ferram Aerospace Research! This will make takeoffs easier and landings harder. Ground Effect Vehicles are much more viable now as well. This phenomenon manifests as difficulty slowing down or a tendency to "float" over the runway instead of descending.
 
-Starting from a configurable altitude (20m by default), you will experience up to a 50% reduction in drag as you descend to a configurable minimum altitude. This is intended as a lightweight plugin for games using FAR and can be adjusted using values in the config file. The much better GroundEffect mod (for non-FAR games) does a better job of this by following this real-world logic!
-
-
-LIMITATIONS:
-
-I am not a reliable or competent developer of computer code. While I have done my best to make this mod performant and sensible, these are aspirational goals at best for someone of my talent.
+Version 4.1 now implements wingspan calculation. Craft will experience a drag reduction of 50% at half their wingspan above ground. The drag reduction effect tails off as you approach a radar altitude equal to your wingspan, and then goes away. This more closely mimics real-life behavior and craft with very large wingspans will now fly appropriately well in ground effect.
 
 SUPPORT:
 
-Please raise an issue on GitHub and I will do my best!
+Please raise an issue on GitHub! Ensure debugMode = true in your settings and please provide your player.txt and KSP.txt logs.
 
 CREDITS:
 
 This mod does not redistribute content from other software. However, I'd like to give special thanks to the following people:
 
-Capital-Asterisk (GitHub) for their original concept and implementation of ground effect in non-FAR KSP games. Their work is a much more realistic implementation of this phenomenon and is what got me interested in adding a simplified version of ground effect to FAR as well!
+Capital-Asterisk (GitHub) for their original concept and implementation of ground effect in non-FAR KSP games. Their work is a great implementation of this phenomenon and is what got me interested in adding a simplified version of ground effect to FAR as well!
 
 dkavolis (GitHub) and ferram4 (GitHub) and many others for their work on Ferram Aerospace Research.
 
@@ -32,8 +27,7 @@ COMPATIBILITY:
 
 -This mod is built for KSP 1 version 1.12.5
 -This mod REQUIRES Ferram Aerospace Research and all its dependencies
--This mod works with and RECOMMENDS Kerbal Wind
--This mod works with and SUGGESTS Scatterer and Parallax Continued 2.0
+-This mod works with and RECOMMENDS Kerbal Wind and KerbalSoaring
 -This mod has not been tested with other planet packs but should be compatible
 
 

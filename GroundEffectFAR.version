@@ -1,12 +1,12 @@
 {
     "NAME":"GroundEffectFAR",
-    "URL":"https://www.zombo.com",
-    "DOWNLOAD":"https://zombo.com/",
+    "URL":"https://github.com/Zondulus/FARGE",
+    "DOWNLOAD":"https://github.com/Zondulus/FARGE/releases",
     "VERSION":
     {
-        "MAJOR":3,
+        "MAJOR":4,
         "MINOR":1,
-        "PATCH":3,
+        "PATCH":0,
         "BUILD":0
     },
     "KSP_VERSION":
