@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 [KSPAddon(KSPAddon.Startup.Flight, once: false)]
 public class GroundEffectFAR : MonoBehaviour
 {
@@ -23,6 +22,9 @@ public class GroundEffectFAR : MonoBehaviour
     private float effectStartAlt = 10.0f;
     private float effectMaxAlt = 5.0f;
 
+    // Cache the delegate to prevent memory allocation in FixedUpdate
+    private Func<Part, Vector3, Vector3> cachedModifierDelegate;
+
     // Timers
     private float dimensionCheckTimer = 0f;
     private const float DIMENSION_CHECK_INTERVAL = 2.0f;
@@ -40,6 +42,9 @@ public class GroundEffectFAR : MonoBehaviour
             Destroy(this);
             return;
         }
+
+        // Cache the method as a delegate explicitly during setup
+        cachedModifierDelegate = GroundEffectModifier;
 
         GameEvents.onVesselWasModified.Add(OnVesselModified);
         GameEvents.onStageActivate.Add(OnStageActivate);
@@ -194,27 +199,39 @@ public class GroundEffectFAR : MonoBehaviour
 
     private void UpdateEffectState(Vessel v, bool shouldBeActive)
     {
-        if (isGroundEffectActive == shouldBeActive) return;
+        // 1. Handle logic exclusively tracking edge-case transitions (for Logs & Cleanup)
+        if (isGroundEffectActive != shouldBeActive)
+        {
+            isGroundEffectActive = shouldBeActive;
 
-        isGroundEffectActive = shouldBeActive;
+            if (isGroundEffectActive)
+            {
+                if (debugMode) Debug.Log($"[GroundEffectFAR] Entering Ground Effect. (AGL: {v.radarAltitude:F1}m)");
+            }
+            else
+            {
+                if (debugMode && currentReductionFraction > 0) Debug.Log("[GroundEffectFAR] Exiting Ground Effect.");
+                RemoveGroundEffect(v);
+            }
+        }
 
+        // 2. Continually apply the effect during FixedUpdate while conditions are met. 
+        // This ensures parts resetting their FAR modules (e.g., from silent voxel rebuilds 
+        // triggered by gear deployment or staging) reliably maintain the force modifier.
         if (isGroundEffectActive)
         {
-            if (debugMode) Debug.Log($"[GroundEffectFAR] Entering Ground Effect. (AGL: {v.radarAltitude:F1}m)");
             ApplyGroundEffect(v);
-        }
-        else
-        {
-            if (debugMode && currentReductionFraction > 0) Debug.Log("[GroundEffectFAR] Exiting Ground Effect.");
-            RemoveGroundEffect(v);
         }
     }
 
     private void ApplyGroundEffect(Vessel v)
     {
+        if (v == null) return;
         for (int i = 0; i < v.parts.Count; i++)
         {
-            FARAPI.SetPartAeroForceModifier(v.parts[i], GroundEffectModifier);
+            Part p = v.parts[i];
+            // Passing the cached delegate here instead of the method group prevents memory allocation
+            if (p != null) FARAPI.SetPartAeroForceModifier(p, cachedModifierDelegate);
         }
     }
 
@@ -223,7 +240,8 @@ public class GroundEffectFAR : MonoBehaviour
         if (v == null) return;
         for (int i = 0; i < v.parts.Count; i++)
         {
-            FARAPI.SetPartAeroForceModifier(v.parts[i], null);
+            Part p = v.parts[i];
+            if (p != null) FARAPI.SetPartAeroForceModifier(p, null);
         }
     }
 
