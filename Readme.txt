@@ -1,4 +1,4 @@
-FARGE v4.1.0 Alpha Readme
+FARGE v4.2.0 Alpha Readme
 License: CC0 1.0 Universal (see License.txt)
 
 AI Authorship Disclaimer: The majority of the code in this mod was written by an AI. No code was plagiarized from other mods. This Readme is human-written. 
